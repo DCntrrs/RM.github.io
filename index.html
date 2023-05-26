@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de RM</title>
+</head>
+<body>
+  <h1>Calculadora de RM</h1>
+  <form>
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario"><br><br>
+
+    <label for="peso">Peso levantado (en kg):</label>
+    <input type="number" id="peso" name="peso" min="1" max="1000"><br><br>
+
+    <label for="repeticiones">Número de repeticiones:</label>
+    <input type="number" id="repeticiones" name="repeticiones" min="1" max="20" onchange="calcularRM()"><br><br>
+
+    <label for="rm-estimado">RM estimado:</label>
+    <input type="text" id="rm-estimado" name="rm-estimado" readonly><br><br>
+
+    <label for="rm10-estimado">RM10 estimado:</label>
+    <input type="text" id="rm10-estimado" name="rm10-estimado" readonly><br><br>
+
+    <input type="button" value="Agregar a lista" onclick="agregarCalculo(); return false;">
+    <input type="button" value="Restablecer lista" onclick="restablecerLista(); return false;">
+  </form>
+
+  <h2>Resultados</h2>
+  <table id="tabla-resultados">
+    <tr>
+      <th>Usuario</th>
+      <th>Peso levantado</th>
+      <th>Repeticiones</th>
+      <th>RM estimado</th>
+      <th>RM10 estimado</th>
+    </tr>
+
+  </table>
+
+  <script>
+    function calcularRM() {
+      var peso = parseFloat(document.getElementById("peso").value);
+      var repeticiones = parseInt(document.getElementById("repeticiones").value);
+      var rm = peso * (1 + (0.033 * repeticiones));
+      document.getElementById("rm-estimado").value = rm.toFixed(2);
+      calcularRM10();
+    }
+
+    function calcularRM10() {
+      var rm = parseFloat(document.getElementById("rm-estimado").value);
+      var rm10 = rm * 0.75;
+      document.getElementById("rm10-estimado").value = rm10.toFixed(2);
+    }
+
+    var resultados = [];
+
+    function agregarCalculo() {
+      var usuario = document.getElementById("usuario").value;
+      var peso = document.getElementById("peso").value;
+      var repeticiones = document.getElementById("repeticiones").value;
+      var rmEstimado = document.getElementById("rm-estimado").value;
+      var rm10Estimado = document.getElementById("rm10-estimado").value;
+
+      resultados.push({
+        usuario: usuario,
+        peso: peso,
+        repeticiones: repeticiones,
+        rmEstimado: rmEstimado,
+        rm10Estimado: rm10Estimado
+      });
+
+        var tablaResultados = document.getElementById("tabla-resultados");
+        var fila = tablaResultados.insertRow(-1);
+        var celdaUsuario = fila.insertCell(0);
+        var celdaPeso = fila.insertCell(1);
+        var celdaRepeticiones = fila.insertCell(2);
+        var celdaRMEstimado = fila.insertCell(3);
+        var celdaRM10Estimado = fila.insertCell(4);
+        celdaUsuario.innerHTML = usuario;
+        celdaPeso.innerHTML = peso;
+        celdaRepeticiones.innerHTML = repeticiones;
+        celdaRMEstimado.innerHTML = rmEstimado;
+        celdaRM10Estimado.innerHTML = rm10Estimado;
+    }   
+    function restablecerLista() {
+        resultados = [];
+        actualizarTablaResultados();
+    }
+
+    function actualizarTablaResultados() {
+        var tablaResultados = document.getElementById("tabla-resultados");
+        tablaResultados.innerHTML = "<tr><th>Usuario</th><th>Peso levantado</th><th>Repeticiones</th><th>RM estimado</th><th>RM10 estimado</th></tr>";
+        for (var i = 0; i < resultados.length; i++) {
+            var fila = tablaResultados.insertRow(-1);
+        var celdaUsuario = fila.insertCell(0);
+        var celdaPeso = fila.insertCell(1);
+        var celdaRepeticiones = fila.insertCell(2);
+        var celdaRMEstimado = fila.insertCell(3);
+        var celdaRM10Estimado = fila.insertCell(4);
+        celdaUsuario.innerHTML = resultados[i].usuario;
+        celdaPeso.innerHTML = resultados[i].peso;
+        celdaRepeticiones.innerHTML = resultados[i].repeticiones;
+        celdaRMEstimado.innerHTML = resultados[i].rmEstimado;
+        celdaRM10Estimado.innerHTML = resultados[i].rm10Estimado;
+        }
+    }
+  </script>
+</body>
+</html>
