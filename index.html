@@ -509,6 +509,10 @@
       resultadosMcGovern = [];
       resultadosMcQueen = [];
       resultadosZinovieff = [];
+      resultadosForMcCloy = [];
+      resultadosResMcCloy = [];
+      resultadosFueMcCloy = [];
+      resultadosTraMcCloy = [];
       actualizarTablaResultados();
       actualizarTablaDelorme();
       actualizarTablaOxford();
@@ -652,6 +656,48 @@
         celdaSemana1.innerHTML = resultadosForMcCloy[i].forsemana1.toFixed(2);
         celdaSemana2.innerHTML = resultadosForMcCloy[i].forsemana2.toFixed(2);
         celdaSemana3.innerHTML = resultadosForMcCloy[i].forsemana3.toFixed(2);
+      }
+    }
+
+    function actualizartablaResMcCloy() {      //tabla agregar
+      var tablaResMcCloy = document.getElementById("tabla-ResMcCloy");
+      tablaResMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
+      for (var i = 0; i < resultadosResMcCloy.length; i++) {
+        var fila = tablaResMcCloy.insertRow(-1);
+        var celdaSemana1 = fila.insertCell(0);
+        var celdaSemana2 = fila.insertCell(1);
+        var celdaSemana3 = fila.insertCell(2);
+        celdaSemana1.innerHTML = resultadosResMcCloy[i].ressemana1.toFixed(2);
+        celdaSemana2.innerHTML = resultadosResMcCloy[i].ressemana2.toFixed(2);
+        celdaSemana3.innerHTML = resultadosResMcCloy[i].ressemana3.toFixed(2);
+      }
+    } 
+
+    function actualizartablaFueMcCloy() {      //tabla agregar
+      var tablaFueMcCloy = document.getElementById("tabla-FueMcCloy");
+      tablaFueMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
+      for (var i = 0; i < resultadosFueMcCloy.length; i++) {
+        var fila = tablaFueMcCloy.insertRow(-1);
+        var celdaSemana1 = fila.insertCell(0);
+        var celdaSemana2 = fila.insertCell(1);
+        var celdaSemana3 = fila.insertCell(2);
+        celdaSemana1.innerHTML = resultadosFueMcCloy[i].fuesemana1.toFixed(2);
+        celdaSemana2.innerHTML = resultadosFueMcCloy[i].fuesemana2.toFixed(2);
+        celdaSemana3.innerHTML = resultadosFueMcCloy[i].fuesemana3.toFixed(2);
+      }
+    }
+
+    function actualizartablaTraMcCloy() {      //tabla agregar
+      var tablaTraMcCloy = document.getElementById("tabla-TraMcCloy");
+      tablaTraMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
+      for (var i = 0; i < resultadosTraMcCloy.length; i++) {
+        var fila = tablaTraMcCloy.insertRow(-1);
+        var celdaSemana1 = fila.insertCell(0);
+        var celdaSemana2 = fila.insertCell(1);
+        var celdaSemana3 = fila.insertCell(2);
+        celdaSemana1.innerHTML = resultadosTraMcCloy[i].trasemana1.toFixed(2);
+        celdaSemana2.innerHTML = resultadosTraMcCloy[i].trasemana2.toFixed(2);
+        celdaSemana3.innerHTML = resultadosTraMcCloy[i].trasemana3.toFixed(2);
       }
     }
 
