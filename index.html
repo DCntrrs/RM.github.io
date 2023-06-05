@@ -43,62 +43,62 @@
   <h2>Método de DeLorme</h2>
   <table id="tabla-delorme">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie</th>
     </tr>
   </table>
 
   <h2>Método de Oxford</h2>
   <table id="tabla-Oxford">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie</th>
     </tr>
   </table>
 
   <h2>Método de Dotte</h2>
   <table id="tabla-Dotte">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie</th>
     </tr>
   </table>
 
   <h2>Método de McGovern</h2>
   <table id="tabla-McGovern">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie 75% (kg)</th>
-      <th>3ra Serie 50% (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie 75%</th>
+      <th>3ra Serie 50%</th>
     </tr>
   </table>
 
   <h2>Método de McQueen</h2>
   <table id="tabla-McQueen">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie</th>
     </tr>
   </table>
 
   <h2>Método de Zinovieff</h2>
   <table id="tabla-Zinovieff">
     <tr>
-      <th>1ra Serie (kg)</th>
-      <th>2da Serie (kg)</th>
-      <th>3ra Serie (kg)</th>
-      <th>4ta Serie (kg)</th>
-      <th>5ta Serie (kg)</th>
-      <th>6ta Serie (kg)</th>
-      <th>7ma Serie (kg)</th>
-      <th>8va Serie (kg)</th>
-      <th>9na Serie (kg)</th>
-      <th>10ma Serie (kg)</th>
+      <th>1ra Serie</th>
+      <th>2da Serie</th>
+      <th>3ra Serie</th>
+      <th>4ta Serie</th>
+      <th>5ta Serie</th>
+      <th>6ta Serie</th>
+      <th>7ma Serie</th>
+      <th>8va Serie</th>
+      <th>9na Serie</th>
+      <th>10ma Serie</th>
     </tr>
   </table>
 
@@ -130,10 +130,10 @@
 
     function agregarCalculo() {
       var usuario = document.getElementById("usuario").value;
-      var peso = document.getElementById("peso").value;
+      var peso = document.getElementById("peso").value + "(kg)";
       var repeticiones = document.getElementById("repeticiones").value;
-      var rmEstimado = document.getElementById("rm-estimado").value;
-      var rm10Estimado = document.getElementById("rm10-estimado").value;
+      var rmEstimado = document.getElementById("rm-estimado").value + "(kg)";
+      var rm10Estimado = document.getElementById("rm10-estimado").value + "(kg)";
 
       resultados.push({
         usuario: usuario,
@@ -184,9 +184,9 @@
       var celdaSemana1 = fila.insertCell(0);
       var celdaSemana2 = fila.insertCell(1);
       var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = semana1.toFixed(2);
-      celdaSemana2.innerHTML = semana2.toFixed(2);
-      celdaSemana3.innerHTML = semana3.toFixed(2);
+      celdaSemana1.innerHTML = semana1.toFixed(2) + "(kg)";
+      celdaSemana2.innerHTML = semana2.toFixed(2) + "(kg)";
+      celdaSemana3.innerHTML = semana3.toFixed(2) + "(kg)";
       
       //que siga con la siguiente function
     }
@@ -209,9 +209,9 @@
       var celdaSemana1 = fila.insertCell(0);
       var celdaSemana2 = fila.insertCell(1);
       var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = seman1.toFixed(2);
-      celdaSemana2.innerHTML = seman2.toFixed(2);
-      celdaSemana3.innerHTML = seman3.toFixed(2);
+      celdaSemana1.innerHTML = seman1.toFixed(2) + "(kg)";
+      celdaSemana2.innerHTML = seman2.toFixed(2) + "(kg)";
+      celdaSemana3.innerHTML = seman3.toFixed(2) + "(kg)";
 
        //que siga con la siguiente function
     }
@@ -234,9 +234,9 @@
       var celdaSemana1 = fila.insertCell(0);
       var celdaSemana2 = fila.insertCell(1);
       var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = sema1.toFixed(2);
-      celdaSemana2.innerHTML = sema2.toFixed(2);
-      celdaSemana3.innerHTML = sema3.toFixed(2);
+      celdaSemana1.innerHTML = sema1.toFixed(2) + "(kg)";
+      celdaSemana2.innerHTML = sema2.toFixed(2) + "(kg)";
+      celdaSemana3.innerHTML = sema3.toFixed(2) + "(kg)";
 
         //que siga con la siguiente function
     }
@@ -262,10 +262,10 @@
       var celdaSemana2 = fila.insertCell(1);
       var celdaSemana3 = fila.insertCell(2);
       var celdaSemana4 = fila.insertCell(3);
-      celdaSemana1.innerHTML = sem1.toFixed(2);
-      celdaSemana2.innerHTML = sem2.toFixed(2);
-      celdaSemana3.innerHTML = sem3.toFixed(2);
-      celdaSemana4.innerHTML = sem4.toFixed(2);
+      celdaSemana1.innerHTML = sem1.toFixed(2) + "(kg)";
+      celdaSemana2.innerHTML = sem2.toFixed(2) + "(kg)";
+      celdaSemana3.innerHTML = sem3.toFixed(2) + "(kg)";
+      celdaSemana4.innerHTML = sem4.toFixed(2) + "(kg)";
       //que siga con la siguiente function
     }
 
@@ -287,9 +287,9 @@
       var celdaSemana1 = fila.insertCell(0);
       var celdaSemana2 = fila.insertCell(1);
       var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = se1.toFixed(2);
-      celdaSemana2.innerHTML = se2.toFixed(2);
-      celdaSemana3.innerHTML = se3.toFixed(2);
+      celdaSemana1.innerHTML = se1.toFixed(2) + "(kg)";
+      celdaSemana2.innerHTML = se2.toFixed(2) + "(kg)";
+      celdaSemana3.innerHTML = se3.toFixed(2) + "(kg)";
 
         //que siga con la siguiente function
     }
@@ -335,16 +335,16 @@
       var celdaSerie8 = fila.insertCell(7);
       var celdaSerie9 = fila.insertCell(8);
       var celdaSerie10 = fila.insertCell(9);
-      celdaSerie1.innerHTML = serie1.toFixed(2);
-      celdaSerie2.innerHTML = serie2.toFixed(2);
-      celdaSerie3.innerHTML = serie3.toFixed(2);
-      celdaSerie4.innerHTML = serie4.toFixed(2);
-      celdaSerie5.innerHTML = serie5.toFixed(2);
-      celdaSerie6.innerHTML = serie6.toFixed(2);
-      celdaSerie7.innerHTML = serie7.toFixed(2);
-      celdaSerie8.innerHTML = serie8.toFixed(2);
-      celdaSerie9.innerHTML = serie9.toFixed(2);
-      celdaSerie10.innerHTML = serie10.toFixed(2);
+      celdaSerie1.innerHTML = serie1.toFixed(2) + "(kg)";
+      celdaSerie2.innerHTML = serie2.toFixed(2) + "(kg)";
+      celdaSerie3.innerHTML = serie3.toFixed(2) + "(kg)";
+      celdaSerie4.innerHTML = serie4.toFixed(2) + "(kg)";
+      celdaSerie5.innerHTML = serie5.toFixed(2) + "(kg)";
+      celdaSerie6.innerHTML = serie6.toFixed(2) + "(kg)";
+      celdaSerie7.innerHTML = serie7.toFixed(2) + "(kg)";
+      celdaSerie8.innerHTML = serie8.toFixed(2) + "(kg)";
+      celdaSerie9.innerHTML = serie9.toFixed(2) + "(kg)";
+      celdaSerie10.innerHTML = serie10.toFixed(2) + "(kg)";
 
         //que siga con la siguiente function
     }
