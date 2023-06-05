@@ -4,7 +4,7 @@
   <title>Calculadora de RM</title>
 </head>
 <body>  <!--Formulario-->
-  <h1>Calculadora de RM</h1>
+  <h1>Rmax (estimacion indirecta metodo Wilday - epply)</h1>
   <form>
     <label for="usuario">Usuario:</label>
     <input type="text" id="usuario" name="usuario"><br><br>
@@ -15,7 +15,10 @@
     <label for="repeticiones">Número de repeticiones:</label>
     <input type="number" id="repeticiones" name="repeticiones" min="1" max="20" onchange="calcularRM()"><br><br>
 
-    <label for="rm-estimado">RM estimado:</label>
+    <label for="porcentaje">Porcentaje de trabajo:(%)</label>
+    <input type="number" id="porcentaje" name="porcentaje" min="1" max="100" oninput="calcularRM10()" /><br><br>
+
+    <label for="rm-estimado">RMax estimado:</label>
     <input type="text" id="rm-estimado" name="rm-estimado" readonly><br><br>
 
     <label for="rm10-estimado">RM10 estimado:</label>
@@ -32,108 +35,72 @@
       <th>Usuario</th>
       <th>Peso levantado</th>
       <th>Repeticiones</th>
-      <th>RM estimado</th>
+      <th>RMax estimado</th>
       <th>RM10 estimado</th>
     </tr>
   </table>
 
-  <h2>Método DeLorme</h2>
+  <h2>Método de DeLorme</h2>
   <table id="tabla-delorme">
     <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie (kg)</th>
     </tr>
   </table>
 
   <h2>Método De Oxford</h2>
   <table id="tabla-Oxford">
     <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie (kg)</th>
     </tr>
   </table>
 
-  <h2>Método DOTTE</h2>
+  <h2>Método Dotte</h2>
   <table id="tabla-Dotte">
     <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie (kg)</th>
     </tr>
   </table>
 
   <h2>Método de McGovern</h2>
   <table id="tabla-McGovern">
     <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana 75%</th>
-      <th>3ra Semana 50%</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie 75% (kg)</th>
+      <th>3ra Serie 50% (kg)</th>
     </tr>
   </table>
 
   <h2>Método McQueen</h2>
   <table id="tabla-McQueen">
     <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie (kg)</th>
     </tr>
   </table>
 
   <h2>Método Zinovieff</h2>
   <table id="tabla-Zinovieff">
     <tr>
-      <th>1ra Serie</th>
-      <th>2da Serie</th>
-      <th>3ra Serie</th>
-      <th>4ta Serie</th>
-      <th>5ta Serie</th>
-      <th>6ta Serie</th>
-      <th>7ma Serie</th>
-      <th>8va Serie</th>
-      <th>9na Serie</th>
-      <th>10ma Serie</th>
+      <th>1ra Serie (kg)</th>
+      <th>2da Serie (kg)</th>
+      <th>3ra Serie (kg)</th>
+      <th>4ta Serie (kg)</th>
+      <th>5ta Serie (kg)</th>
+      <th>6ta Serie (kg)</th>
+      <th>7ma Serie (kg)</th>
+      <th>8va Serie (kg)</th>
+      <th>9na Serie (kg)</th>
+      <th>10ma Serie (kg)</th>
     </tr>
   </table>
-
-  <h2>Método McCloy</h2>
-  <h3>Fortalecer</h3>
-  <table id="tabla-ForMcCloy">
-    <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
-    </tr>
-  </table>
-  <h3>Resistencia</h3>
-  <table id="tabla-ResMcCloy">
-    <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
-    </tr>
-  </table>
-  <h3>Fuerza</h3>
-  <table id="tabla-FueMcCloy">
-    <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
-    </tr>
-  </table>
-  <h3>Transicion</h3>
-  <table id="tabla-TraMcCloy">
-    <tr>
-      <th>1ra Semana</th>
-      <th>2da Semana</th>
-      <th>3ra Semana</th>
-    </tr>
-  </table>
-
-
 
 
   <script>
@@ -147,9 +114,11 @@
 
     function calcularRM10() {
       var rm = parseFloat(document.getElementById("rm-estimado").value);
-      var rm10 = rm * 0.75;
-      document.getElementById("rm10-estimado").value = rm10.toFixed(2);
+      var porcentaje = parseFloat(document.getElementById("porcentaje").value);
+      var rm10 = rm * porcentaje / 100;
+      document.getElementById("rm10-estimado").value = rm10.toString();
     }
+
       //variables resultados de tablas
     var resultados = [];
     var resultadosDelorme = [];
@@ -158,10 +127,6 @@
     var resultadosMcGovern = [];
     var resultadosMcQueen = [];
     var resultadosZinovieff = [];
-    var resultadosForMcCloy = [];
-    var resultadosResMcCloy = [];
-    var resultadosFueMcCloy = [];
-    var resultadosTraMcCloy = [];
 
     function agregarCalculo() {
       var usuario = document.getElementById("usuario").value;
@@ -198,10 +163,6 @@
         calcularSemanasMcgovern();
         calcularSemanasMcQueen();
         calcularSerieZinovieff();
-        calcularSemanaForMcCloy();
-        calcularSemanaResMcCloy();
-        calcularSemanaFueMcCloy();
-        calcularSemanaTraMcCloy();
       }, 0);
     }
 
@@ -314,7 +275,7 @@
       var se2 = rm10Estimado;
       var se3 = rm10Estimado;
 
-      resultadosDotte.push({
+      resultadosMcQueen.push({
         se1: se1,
         se2: se2,
         se3: se3,
@@ -388,119 +349,6 @@
         //que siga con la siguiente function
     }
 
-    function calcularSemanaForMcCloy() {
-      var rm10Estimado = parseFloat(document.getElementById("rm10-estimado").value);
-      var fortalecer = rm10Estimado * 0.8;
-      var forsemana1 = fortalecer * 0.5;
-      var forsemana2 = fortalecer;
-      var forsemana3 = fortalecer * 0.75;
-      
-      resultadosForMcCloy.push({
-        forsemana1: forsemana1,
-        forsemana2: forsemana2,
-        forsemana3: forsemana3,
-        
-      });
-
-      var tablaForMcCloy = document.getElementById("tabla-ForMcCloy");
-      tablaForMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      var fila = tablaForMcCloy.insertRow(-1);
-      var celdaSemana1 = fila.insertCell(0);
-      var celdaSemana2 = fila.insertCell(1);
-      var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = forsemana1.toFixed(2);
-      celdaSemana2.innerHTML = forsemana2.toFixed(2);
-      celdaSemana3.innerHTML = forsemana3.toFixed(2);
-      
-      //que siga con la siguiente function
-    }
-
-
-    function calcularSemanaResMcCloy() {      
-      var rm10Estimado = parseFloat(document.getElementById("rm10-estimado").value);
-      var resistencia = rm10Estimado * 0.6;
-      var ressemana1 = resistencia * 0.5;
-      var ressemana2 = resistencia;
-      var ressemana3 = resistencia * 0.75;
-
-      resultadosResMcCloy.push({
-        ressemana1: ressemana1,
-        ressemana2: ressemana2,
-        ressemana3: ressemana3,
-      });
-
-      var tablaResMcCloy = document.getElementById("tabla-ResMcCloy");
-      tablaResMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      var fila = tablaResMcCloy.insertRow(-1);
-      var celdaSemana1 = fila.insertCell(0);
-      var celdaSemana2 = fila.insertCell(1);
-      var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = ressemana1.toFixed(2);
-      celdaSemana2.innerHTML = ressemana2.toFixed(2);
-      celdaSemana3.innerHTML = ressemana3.toFixed(2);
-
-      //que siga con la siguiente function
-    }
-
-
-    function calcularSemanaFueMcCloy() {      
-      var rm10Estimado = parseFloat(document.getElementById("rm10-estimado").value);
-      var fuerza = rm10Estimado * 0.85;
-      var fuesemana1 = fuerza * 0.5;
-      var fuesemana2 = fuerza;
-      var fuesemana3 = fuerza * 0.75;
-
-      resultadosFueMcCloy.push({
-        fuesemana1: fuesemana1,
-        fuesemana2: fuesemana2,
-        fuesemana3: fuesemana3,
-
-      });
-
-      var tablaFueMcCloy = document.getElementById("tabla-FueMcCloy");
-      tablaFueMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      var fila = tablaFueMcCloy.insertRow(-1);
-      var celdaSemana1 = fila.insertCell(0);
-      var celdaSemana2 = fila.insertCell(1);
-      var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = fuesemana1.toFixed(2);
-      celdaSemana2.innerHTML = fuesemana2.toFixed(2);
-      celdaSemana3.innerHTML = fuesemana3.toFixed(2);
-
-        //que siga con la siguiente function
-    }
-
-
-    function calcularSemanaTraMcCloy() {        //////////////////////////////////////////////////////////////////////
-      var rm10Estimado = parseFloat(document.getElementById("rm10-estimado").value);
-      var transicion = rm10Estimado * 0.7;
-      var trasemana1 = transicion * 0.5;
-      var trasemana2 = transicion;
-      var trasemana3 = transicion * 0.75;
-
-
-      resultadosTraMcCloy.push({
-        trasemana1: trasemana1,
-        trasemana2: trasemana2,
-        trasemana3: trasemana3,
-
-      });
-
-      var tablaTraMcCloy = document.getElementById("tabla-TraMcCloy");
-      tablaTraMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      var fila = tablaTraMcCloy.insertRow(-1);
-      var celdaSemana1 = fila.insertCell(0);
-      var celdaSemana2 = fila.insertCell(1);
-      var celdaSemana3 = fila.insertCell(2);
-      celdaSemana1.innerHTML = trasemana1.toFixed(2);
-      celdaSemana2.innerHTML = trasemana2.toFixed(2);
-      celdaSemana3.innerHTML = trasemana3.toFixed(2);
-
-        //que siga con la siguiente function
-    }
-
-    
-
     function restablecerLista() {   //limpiar tabla
       resultados = [];
       resultadosDelorme = [];
@@ -509,10 +357,6 @@
       resultadosMcGovern = [];
       resultadosMcQueen = [];
       resultadosZinovieff = [];
-      resultadosForMcCloy = [];
-      resultadosResMcCloy = [];
-      resultadosFueMcCloy = [];
-      resultadosTraMcCloy = [];
       actualizarTablaResultados();
       actualizarTablaDelorme();
       actualizarTablaOxford();
@@ -520,10 +364,6 @@
       actualizarTablaMcGovern();
       actualizarTablaMcQueen();
       actualizartablaZinovieff();
-      actualizartablaForMcCloy();
-      actualizartablaResMcCloy();
-      actualizartablaFueMcCloy();
-      actualizartablaTraMcCloy();
       
     }
 
@@ -645,61 +485,6 @@
       }
     }
 
-    function actualizartablaForMcCloy() {      //tabla agregar
-      var tablaForMcCloy = document.getElementById("tabla-ForMcCloy");
-      tablaForMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      for (var i = 0; i < resultadosForMcCloy.length; i++) {
-        var fila = tablaForMcCloy.insertRow(-1);
-        var celdaSemana1 = fila.insertCell(0);
-        var celdaSemana2 = fila.insertCell(1);
-        var celdaSemana3 = fila.insertCell(2);
-        celdaSemana1.innerHTML = resultadosForMcCloy[i].forsemana1.toFixed(2);
-        celdaSemana2.innerHTML = resultadosForMcCloy[i].forsemana2.toFixed(2);
-        celdaSemana3.innerHTML = resultadosForMcCloy[i].forsemana3.toFixed(2);
-      }
-    }
-
-    function actualizartablaResMcCloy() {      //tabla agregar
-      var tablaResMcCloy = document.getElementById("tabla-ResMcCloy");
-      tablaResMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      for (var i = 0; i < resultadosResMcCloy.length; i++) {
-        var fila = tablaResMcCloy.insertRow(-1);
-        var celdaSemana1 = fila.insertCell(0);
-        var celdaSemana2 = fila.insertCell(1);
-        var celdaSemana3 = fila.insertCell(2);
-        celdaSemana1.innerHTML = resultadosResMcCloy[i].ressemana1.toFixed(2);
-        celdaSemana2.innerHTML = resultadosResMcCloy[i].ressemana2.toFixed(2);
-        celdaSemana3.innerHTML = resultadosResMcCloy[i].ressemana3.toFixed(2);
-      }
-    } 
-
-    function actualizartablaFueMcCloy() {      //tabla agregar
-      var tablaFueMcCloy = document.getElementById("tabla-FueMcCloy");
-      tablaFueMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      for (var i = 0; i < resultadosFueMcCloy.length; i++) {
-        var fila = tablaFueMcCloy.insertRow(-1);
-        var celdaSemana1 = fila.insertCell(0);
-        var celdaSemana2 = fila.insertCell(1);
-        var celdaSemana3 = fila.insertCell(2);
-        celdaSemana1.innerHTML = resultadosFueMcCloy[i].fuesemana1.toFixed(2);
-        celdaSemana2.innerHTML = resultadosFueMcCloy[i].fuesemana2.toFixed(2);
-        celdaSemana3.innerHTML = resultadosFueMcCloy[i].fuesemana3.toFixed(2);
-      }
-    }
-
-    function actualizartablaTraMcCloy() {      //tabla agregar
-      var tablaTraMcCloy = document.getElementById("tabla-TraMcCloy");
-      tablaTraMcCloy.innerHTML = "<tr><th>1ra Semana</th><th>2da Semana</th><th>3ra Semana</th></tr>";
-      for (var i = 0; i < resultadosTraMcCloy.length; i++) {
-        var fila = tablaTraMcCloy.insertRow(-1);
-        var celdaSemana1 = fila.insertCell(0);
-        var celdaSemana2 = fila.insertCell(1);
-        var celdaSemana3 = fila.insertCell(2);
-        celdaSemana1.innerHTML = resultadosTraMcCloy[i].trasemana1.toFixed(2);
-        celdaSemana2.innerHTML = resultadosTraMcCloy[i].trasemana2.toFixed(2);
-        celdaSemana3.innerHTML = resultadosTraMcCloy[i].trasemana3.toFixed(2);
-      }
-    }
 
   </script>
 </body>
